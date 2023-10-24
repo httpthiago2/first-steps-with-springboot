@@ -17,7 +17,60 @@ public class CalculatorController {
         if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
             throw new UnsupportedMathOperationException("Please set a numeric value");
         }
-
         return NumberUtils.convertToDouble(firstNumber) + NumberUtils.convertToDouble(secondNumber);
+    }
+
+    @RequestMapping(value = "/subtract/{firstNumber}/{secondNumber}", method = RequestMethod.GET)
+    public Double subtract(
+            @PathVariable(value = "firstNumber") String firstNumber,
+            @PathVariable(value = "secondNumber") String secondNumber
+    ) {
+        if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return NumberUtils.convertToDouble(firstNumber) - NumberUtils.convertToDouble(secondNumber);
+    }
+
+    @RequestMapping(value = "/multiply/{firstNumber}/{secondNumber}", method = RequestMethod.GET)
+    public Double multiply(
+            @PathVariable(value = "firstNumber") String firstNumber,
+            @PathVariable(value = "secondNumber") String secondNumber
+    ) {
+        if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return NumberUtils.convertToDouble(firstNumber) * NumberUtils.convertToDouble(secondNumber);
+    }
+
+    @RequestMapping(value = "/divide/{firstNumber}/{secondNumber}", method = RequestMethod.GET)
+    public Double divide(
+            @PathVariable(value = "firstNumber") String firstNumber,
+            @PathVariable(value = "secondNumber") String secondNumber
+    ) {
+        if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return NumberUtils.convertToDouble(firstNumber) / NumberUtils.convertToDouble(secondNumber);
+    }
+
+    @RequestMapping(value = "/mean/{firstNumber}/{secondNumber}", method = RequestMethod.GET)
+    public Double mean(
+            @PathVariable(value = "firstNumber") String firstNumber,
+            @PathVariable(value = "secondNumber") String secondNumber
+    ) {
+        if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return  (NumberUtils.convertToDouble(firstNumber) + NumberUtils.convertToDouble(secondNumber)) / 2;
+    }
+
+    @RequestMapping(value = "/squareRoot/{number}", method = RequestMethod.GET)
+    public Double squareRoot(
+            @PathVariable(value = "number") String number
+    ) {
+        if (!NumberUtils.isNumeric(number)) {
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return  Math.sqrt(NumberUtils.convertToDouble(number));
     }
 }
