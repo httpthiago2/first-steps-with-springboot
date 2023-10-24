@@ -1,4 +1,4 @@
-package br.com.thiago.firststepswithspringboot.calculator;
+package br.com.thiago.firststepswithspringboot.controllers;
 
 import br.com.thiago.firststepswithspringboot.exceptions.UnsupportedMathOperationException;
 import br.com.thiago.firststepswithspringboot.service.CalculatorService;
