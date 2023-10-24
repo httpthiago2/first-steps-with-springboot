@@ -1,6 +1,7 @@
 package br.com.thiago.firststepswithspringboot.calculator;
 
 import br.com.thiago.firststepswithspringboot.exceptions.UnsupportedMathOperationException;
+import br.com.thiago.firststepswithspringboot.service.CalculatorService;
 import br.com.thiago.firststepswithspringboot.utils.NumberUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,7 @@ public class CalculatorController {
             @PathVariable(value = "firstNumber") String firstNumber,
             @PathVariable(value = "secondNumber") String secondNumber
     ) {
-        if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
-        }
-        return NumberUtils.convertToDouble(firstNumber) + NumberUtils.convertToDouble(secondNumber);
+        return CalculatorService.sum(firstNumber, secondNumber);
     }
 
     @RequestMapping(value = "/subtract/{firstNumber}/{secondNumber}", method = RequestMethod.GET)
@@ -25,10 +23,7 @@ public class CalculatorController {
             @PathVariable(value = "firstNumber") String firstNumber,
             @PathVariable(value = "secondNumber") String secondNumber
     ) {
-        if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
-        }
-        return NumberUtils.convertToDouble(firstNumber) - NumberUtils.convertToDouble(secondNumber);
+        return CalculatorService.subtract(firstNumber, secondNumber);
     }
 
     @RequestMapping(value = "/multiply/{firstNumber}/{secondNumber}", method = RequestMethod.GET)
@@ -36,10 +31,7 @@ public class CalculatorController {
             @PathVariable(value = "firstNumber") String firstNumber,
             @PathVariable(value = "secondNumber") String secondNumber
     ) {
-        if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
-        }
-        return NumberUtils.convertToDouble(firstNumber) * NumberUtils.convertToDouble(secondNumber);
+        return CalculatorService.multiply(firstNumber, secondNumber);
     }
 
     @RequestMapping(value = "/divide/{firstNumber}/{secondNumber}", method = RequestMethod.GET)
@@ -47,10 +39,7 @@ public class CalculatorController {
             @PathVariable(value = "firstNumber") String firstNumber,
             @PathVariable(value = "secondNumber") String secondNumber
     ) {
-        if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
-        }
-        return NumberUtils.convertToDouble(firstNumber) / NumberUtils.convertToDouble(secondNumber);
+        return CalculatorService.divide(firstNumber, secondNumber);
     }
 
     @RequestMapping(value = "/mean/{firstNumber}/{secondNumber}", method = RequestMethod.GET)
@@ -58,19 +47,13 @@ public class CalculatorController {
             @PathVariable(value = "firstNumber") String firstNumber,
             @PathVariable(value = "secondNumber") String secondNumber
     ) {
-        if (!NumberUtils.isNumeric(firstNumber) || !NumberUtils.isNumeric(secondNumber)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
-        }
-        return  (NumberUtils.convertToDouble(firstNumber) + NumberUtils.convertToDouble(secondNumber)) / 2;
+        return CalculatorService.mean(firstNumber, secondNumber);
     }
 
     @RequestMapping(value = "/squareRoot/{number}", method = RequestMethod.GET)
     public Double squareRoot(
             @PathVariable(value = "number") String number
     ) {
-        if (!NumberUtils.isNumeric(number)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
-        }
-        return  Math.sqrt(NumberUtils.convertToDouble(number));
+        return CalculatorService.squareRoot(number);
     }
 }
