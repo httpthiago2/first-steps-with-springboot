@@ -1,4 +1,4 @@
-package br.com.thiago.firststepswithspringboot;
+package br.com.thiago.firststepswithspringboot.helloWorld;
 
 public class Greeting {
     private final long id;

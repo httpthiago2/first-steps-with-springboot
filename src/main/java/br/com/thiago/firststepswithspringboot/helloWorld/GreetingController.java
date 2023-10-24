@@ -1,4 +1,4 @@
-package br.com.thiago.firststepswithspringboot;
+package br.com.thiago.firststepswithspringboot.helloWorld;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
