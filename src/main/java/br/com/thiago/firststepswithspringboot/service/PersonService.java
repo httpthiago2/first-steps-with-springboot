@@ -1,7 +1,9 @@
 package br.com.thiago.firststepswithspringboot.service;
 
 import br.com.thiago.firststepswithspringboot.Mapper.DozerMapper;
+import br.com.thiago.firststepswithspringboot.Mapper.PersonMapper;
 import br.com.thiago.firststepswithspringboot.dto.v1.PersonVO;
+import br.com.thiago.firststepswithspringboot.dto.v2.PersonVOv2;
 import br.com.thiago.firststepswithspringboot.entity.Person;
 import br.com.thiago.firststepswithspringboot.entity.Person;
 import br.com.thiago.firststepswithspringboot.exceptions.ResourceNotFoundException;
@@ -19,6 +21,9 @@ public class PersonService {
     @Autowired
     private PersonRepository repository;
 
+    @Autowired
+    private PersonMapper personMapper;
+
     public PersonVO findById(Long id) {
         logger.info("###Finding one person");
         var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
@@ -34,6 +39,12 @@ public class PersonService {
         logger.info("###Creating a person");
         Person newPerson = DozerMapper.parseObject(person, Person.class);
         return DozerMapper.parseObject(repository.save(newPerson), PersonVO.class);
+    }
+
+    public PersonVOv2 createV2(PersonVOv2 person) {
+        logger.info("###Creating a person");
+        Person newPerson = personMapper.convertVoToEntity(person);
+        return personMapper.convertEntityToVo(repository.save(newPerson));
     }
 
     public PersonVO update(PersonVO person) {
