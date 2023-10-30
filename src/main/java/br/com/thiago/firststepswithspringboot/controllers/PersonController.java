@@ -4,6 +4,7 @@ import br.com.thiago.firststepswithspringboot.entity.Person;
 import br.com.thiago.firststepswithspringboot.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,8 +49,9 @@ public class PersonController {
     @DeleteMapping(
             value = "/{id}"
     )
-    public void deleteById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable(value = "id") Long id) {
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
