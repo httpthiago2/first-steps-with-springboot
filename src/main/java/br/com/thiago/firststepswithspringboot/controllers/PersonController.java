@@ -14,25 +14,22 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
-    @RequestMapping(
+    @GetMapping(
             value = "/{id}",
-            method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public Person findById(@PathVariable(value = "id") Long id) {
         return service.findById(id);
     }
 
-    @RequestMapping(
-            method = RequestMethod.GET,
+    @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<Person> findAll() {
         return service.findAll();
     }
 
-    @RequestMapping(
-            method = RequestMethod.POST,
+    @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
@@ -40,8 +37,7 @@ public class PersonController {
         return service.create(person);
     }
 
-    @RequestMapping(
-            method = RequestMethod.PUT,
+    @PutMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
@@ -49,9 +45,8 @@ public class PersonController {
         return service.update(person);
     }
 
-    @RequestMapping(
-            value = "/{id}",
-            method = RequestMethod.DELETE
+    @DeleteMapping(
+            value = "/{id}"
     )
     public void deleteById(@PathVariable(value = "id") Long id) {
         service.delete(id);
