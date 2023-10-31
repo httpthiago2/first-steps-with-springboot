@@ -18,22 +18,22 @@ public class PersonController {
 
     @GetMapping(
             value = "/{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonVO findById(@PathVariable(value = "id") Long id) {
         return service.findById(id);
     }
 
     @GetMapping(
-            produces = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public List<PersonVO> findAll() {
         return service.findAll();
     }
 
     @PostMapping(
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonVO createPerson(@RequestBody PersonVO person) {
         return service.create(person);
@@ -41,16 +41,16 @@ public class PersonController {
 
     @PostMapping(
             value = "v2",
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonVOv2 createPersonV2(@RequestBody PersonVOv2 person) {
         return service.createV2(person);
     }
 
     @PutMapping(
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonVO updatePerson(@RequestBody PersonVO person) {
         return service.update(person);
